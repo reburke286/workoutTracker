@@ -1,0 +1,23 @@
+{
+  "name": "workouttracker",
+  "version": "1.0.0",
+  "description": "workout app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reburke286/workoutTracker.git"
+  },
+  "author": "Becca Burke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reburke286/workoutTracker/issues"
+  },
+  "homepage": "https://github.com/reburke286/workoutTracker#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.8.11"
+  }
+}
