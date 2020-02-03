@@ -8,7 +8,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-
     <style>
       .container img {
         position: absolute;
@@ -18,7 +17,11 @@
         height: auto;
         opacity: 0.6;
       }
-
+      .container form {
+        padding-left: 200px;
+        position: relative;
+        z-index: 2;
+      }
       input {
         display: block;
         height: 36px;
@@ -29,14 +32,6 @@
         width: 200px;
         height: 200px;
       }
-
-      .waves-effect {
-        margin: 30px;
-      }
-
-      .row {
-        padding: 100px;
-      }
     </style>
   </head>
   <body>
@@ -44,18 +39,14 @@
       <img
         src="https://pickywallpapers.com/img/2018/3/boxing-gym-computer-background-897-916-hd-wallpapers.jpg"
       />
-      <div class="row">
-        <div class="col l6">
-          <a class="waves-effect waves-light purple darken-4 btn-large"
-            >New Workout</a
-          >
-        </div>
-        <div class="col l6">
-          <a class="waves-effect waves-light purple darken-4 btn-large"
-            >Update Previous Workout</a
-          >
-        </div>
-      </div>
+      <form action="/submit" method="post">
+        <h1>Hi User!</h1>
+        <h2>Enter a Note!</h2>
+        <input type="text" name="title" placeholder="Title" />
+        <textarea type="text" name="body">Write Note Here</textarea>
+
+        <input type="submit" />
+      </form>
     </div>
   </body>
 </html>
