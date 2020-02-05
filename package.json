@@ -18,7 +18,6 @@
   "homepage": "https://github.com/reburke286/workoutTracker#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "materialize-css": "^1.0.0-rc.2",
     "mongoose": "^5.8.11"
   }
 }
