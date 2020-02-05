@@ -24,38 +24,34 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Workoutdb", {
   useNewUrlParser: true
 });
 
+// creating the mongoose database
 db.Workout.create({})
-  .then(dbUser => {
-    console.log(dbUser);
+  .then(dbWorkout => {
+    console.log(dbWorkout);
   })
   .catch(({ message }) => {
     console.log(message);
   });
 
+// get requests
 app.get("/update", function(req, res) {
   res.sendFile(path.join(__dirname + "/public/update.html"));
+  db.Workout.find({})
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.json(err);
+    });
 });
 
 app.get("/add", function(req, res) {
   res.sendFile(path.join(__dirname + "/public/add.html"));
 });
 
-// router.get("/update", (req, res) => {
-//   res.sendFile("update.html");
-//   db.Workout.find({})
-//     .then(dbWorkout => {
-//       res.json(dbWorkout);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
-
+// post requests
 app.post("/api/workouts", ({ body }, res) => {
-  const workout = new Workout(body);
-
-  workout
-    .create(workout)
+  db.Workout.create(body)
     .then(dbWorkout => {
       // res.json(dbWorkout);
       console.log(dbWorkout);
@@ -64,16 +60,6 @@ app.post("/api/workouts", ({ body }, res) => {
       res.json(err);
     });
 });
-
-// app.get("/user", (req, res) => {
-//   db.User.find({})
-//     .then(dbUser => {
-//       res.json(dbUser);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
 
 // app.post("/submit", ({ body }, res) => {
 //   db.Note.create(body)
