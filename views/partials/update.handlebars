@@ -34,4 +34,13 @@
         <form action="/submit" method="post">
             <h2>Update a Workout</h2>
         </form>
+        <div>
+            {{#each workouts }}
+            <article class="workout">
+                <div>Type: {{ this.type }}</div>
+                <div>Description: {{ this.workout }}</div>
+                <div>ID: {{ this._id }}</div>
+            </article>
+            {{/each}}
+        </div>
     </div>
