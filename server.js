@@ -1,5 +1,5 @@
 const express = require("express");
-// const logger = require("morgan");
+const logger = require("morgan");
 const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 3000;
@@ -13,12 +13,16 @@ const router = express.Router();
 // set static directories
 app.use(express.static(path.join(__dirname, "public")));
 
-// app.use(logger("dev"));
+app.use(logger("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// app.use(express.static("public"));
+// Set Handlebars
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Workoutdb", {
   useNewUrlParser: true
@@ -34,23 +38,25 @@ db.Workout.create({})
   });
 
 // get requests
+app.get("/", function(req, res) {
+  res.render("index");
+});
 app.get("/update", function(req, res) {
-  res.sendFile(path.join(__dirname + "/public/update.html"));
-  db.Workout.find({})
-    .then(dbWorkout => {
-      res.json(dbWorkout);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+  // db.Workout.find()
+  //   .then(dbWorkout => {
+  res.render("partials/update");
+  // })
+  // .catch(err => {
+  //   res.json(err);
+  // });
 });
 
 app.get("/add", function(req, res) {
-  res.sendFile(path.join(__dirname + "/public/add.html"));
+  res.render("partials/add");
 });
 
 // post requests
-app.post("/api/workouts", ({ body }, res) => {
+app.post("/add", ({ body }, res) => {
   db.Workout.create(body)
     .then(dbWorkout => {
       // res.json(dbWorkout);
@@ -61,30 +67,22 @@ app.post("/api/workouts", ({ body }, res) => {
     });
 });
 
-// app.post("/submit", ({ body }, res) => {
-//   db.Note.create(body)
-//     .then(({ _id }) =>
-//       db.User.findOneAndUpdate({}, { $push: { notes: _id } }, { new: true })
-//     )
-//     .then(dbUser => {
-//       res.json(dbUser);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
+// app.post("/update", ({ body }, res) => {
+// db.Workout.create(body).then({_id}) =>
+// db.Workout.findOneAndUpdate({}, {$set: {title: }, {workout: }})
+
 // });
 
-// app.get("/populateduser", (req, res) => {
-
-//   db.User.find({})
-//     .populate("notes")
-//     .then(dbUser => {
-//       res.json(dbUser);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
+app.get("/api/workouts", (req, res) => {
+  db.Workout.find({})
+    .populate("workout")
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
 
 // Start the server
 app.listen(PORT, () => {
