@@ -49,40 +49,6 @@ app.get("/update", function(req, res) {
   });
 });
 
-// exports.getAlertsPage = function(req, res) {
-//   db.Alert.findAll({}).then(dbAlerts => {
-//     let dbAlertsArr = [];
-//     for (var i = 0; i < dbAlerts.length; i++) {
-//       const dbAlertsObj = {
-//         id: dbAlerts[i].dataValues.id,
-//         client: dbAlerts[i].dataValues.client,
-//         metal: dbAlerts[i].dataValues.metal,
-//         price: dbAlerts[i].dataValues.price
-//       };
-
-//       dbAlertsArr.push(dbAlertsObj);
-//     }
-//     console.log(dbAlertsArr);
-
-//     res.render("partials/alertsDB", { alertArr: dbAlertsArr });
-//   });
-// };
-
-// router.get('/get-data', function(req, res, next) {
-//   var resultArray = [];
-//   mongo.connect(url, function(err, db) {
-//     assert.equal(null, err);
-//     var cursor = db.collection('user-data').find();
-//     cursor.forEach(function(doc, err) {
-//       assert.equal(null, err);
-//       resultArray.push(doc);
-//     }, function() {
-//       db.close();
-//       res.render('index', {items: resultArray});
-//     });
-//   });
-// });
-
 app.get("/add", function(req, res) {
   res.render("partials/add");
 });
@@ -109,6 +75,28 @@ app.post("/add", ({ body }, res) => {
     .catch(err => {
       res.json(err);
     });
+});
+
+app.post("/update/:id", (req, res) => {
+  db.Workout.update(
+    {
+      _id: mongojs.ObjectId(req.params.id)
+    },
+    {
+      $set: {
+        title: req.body.title,
+        body: req.body.body,
+        updatedAt: Date.now()
+      }
+    },
+    (error, data) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.send(data);
+      }
+    }
+  );
 });
 
 // Start the server

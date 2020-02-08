@@ -44,6 +44,10 @@
         height: 200px;
         font-size: 24px;
     }
+
+    p {
+        line-height: 10px;
+    }
 </style>
 </head>
 
@@ -55,13 +59,14 @@
         </form>
         <div class="row">
             <div class="col l6">
-                <div>
+                <div class="workout">
                     {{#each workouts }}
-                    <article class="workout">
-                        <div>ID: {{ this.id }}</div>
-                        <div>Title: {{ this.title }}</div>
-                        <div>Description: {{ this.body }}</div>
-                    </article>
+
+                    <p>ID: {{ this.id }}</p>
+                    <p>Title: {{ this.title }}</p>
+                    <p>Description: {{ this.body }}</p>
+                    <button class="update-button waves-effect waves-light purple darken-4 btn-large">Update</button>
+
                     {{/each}}
                 </div>
             </div>
@@ -72,9 +77,9 @@
                         <input class="input" id="title" type="text" name="title" placeholder="Title" />
                         <textarea id="body" type="text" name="body" placeholder="Workout Information"></textarea>
                     </form>
-                    <button id="update" class="waves-effect waves-light purple darken-4 btn-large">
+                    {{!-- <button id="update" class="waves-effect waves-light purple darken-4 btn-large">
                         Update
-                    </button>
+                    </button> --}}
                 </div>
             </div>
         </div>
