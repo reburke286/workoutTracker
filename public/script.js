@@ -27,7 +27,7 @@ $(document).ready(function() {
     $("#body").val("");
 
     // Send the POST request.
-    $.post("/api/workouts", newWorkout).then(() => {
+    $.post("/add", newWorkout).then(() => {
       // Reload the page to get the updated list
       location.reload();
     });

@@ -34,17 +34,39 @@ app.get("/", function(req, res) {
 });
 
 app.get("/update", function(req, res) {
-  const workoutArr = [];
-  db.Workout.find({})
-    .then(dbWorkout => {
-      dbWorkout.forEach(function(doc, err) {
-        workoutArr.push(doc);
-      });
-    })
-    .then(() => {
-      res.render("partials/update", { workouts: workoutArr });
-    });
+  db.Workout.find({}).then(dbWorkout => {
+    console.log(dbWorkout[0]._id);
+    const workoutArr = [];
+    for (var i = 0; i < dbWorkout.length; i++) {
+      const dbWorkoutObj = {
+        id: dbWorkout[i]._id,
+        title: dbWorkout[i].title,
+        body: dbWorkout[i].body
+      };
+      workoutArr.push(dbWorkoutObj);
+    }
+    res.render("partials/update", { workouts: workoutArr });
+  });
 });
+
+// exports.getAlertsPage = function(req, res) {
+//   db.Alert.findAll({}).then(dbAlerts => {
+//     let dbAlertsArr = [];
+//     for (var i = 0; i < dbAlerts.length; i++) {
+//       const dbAlertsObj = {
+//         id: dbAlerts[i].dataValues.id,
+//         client: dbAlerts[i].dataValues.client,
+//         metal: dbAlerts[i].dataValues.metal,
+//         price: dbAlerts[i].dataValues.price
+//       };
+
+//       dbAlertsArr.push(dbAlertsObj);
+//     }
+//     console.log(dbAlertsArr);
+
+//     res.render("partials/alertsDB", { alertArr: dbAlertsArr });
+//   });
+// };
 
 // router.get('/get-data', function(req, res, next) {
 //   var resultArray = [];
@@ -65,24 +87,24 @@ app.get("/add", function(req, res) {
   res.render("partials/add");
 });
 
-// post requests
-
-app.post("/add", ({ body }, res) => {
-  db.Workout.create(body)
+app.get("/api/workouts", (req, res) => {
+  db.Workout.find({})
+    .populate("workout")
     .then(dbWorkout => {
-      // res.json(dbWorkout);
-      console.log(dbWorkout);
+      res.json(dbWorkout);
     })
     .catch(err => {
       res.json(err);
     });
 });
 
-app.get("/api/workouts", (req, res) => {
-  db.Workout.find({})
-    .populate("workout")
+// post requests
+app.post("/add", ({ body }, res) => {
+  console.log(body);
+  db.Workout.create(body)
     .then(dbWorkout => {
       res.json(dbWorkout);
+      console.log(dbWorkout);
     })
     .catch(err => {
       res.json(err);

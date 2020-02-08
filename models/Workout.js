@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const WorkoutSchema = new Schema({
-  type: String,
-  workout: String,
+  title: String,
+  body: String,
   userCreated: {
     type: Date,
     default: Date.now

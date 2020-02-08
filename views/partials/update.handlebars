@@ -1,4 +1,9 @@
 <style>
+    body {
+        font-weight: bold;
+        font-size: 24px
+    }
+
     .container img {
         position: absolute;
         left: 0;
@@ -9,21 +14,35 @@
     }
 
     .container form {
-        padding-left: 200px;
         position: relative;
         z-index: 2;
     }
 
-    input {
+    ::-webkit-input-placeholder {
+        color: black;
+    }
+
+    #id {
         display: block;
         height: 36px;
-        width: 200px;
+        width: 400px;
         font-size: 24px;
+        color: black;
+    }
+
+
+    #title {
+        display: block;
+        height: 36px;
+        width: 400px;
+        font-size: 24px;
+        color: black;
     }
 
     textarea {
-        width: 200px;
+        width: 400px;
         height: 200px;
+        font-size: 24px;
     }
 </style>
 </head>
@@ -34,13 +53,30 @@
         <form action="/submit" method="post">
             <h2>Update a Workout</h2>
         </form>
-        <div>
-            {{#each workouts }}
-            <article class="workout">
-                <div>Type: {{ this.type }}</div>
-                <div>Description: {{ this.workout }}</div>
-                <div>ID: {{ this._id }}</div>
-            </article>
-            {{/each}}
+        <div class="row">
+            <div class="col l6">
+                <div>
+                    {{#each workouts }}
+                    <article class="workout">
+                        <div>ID: {{ this.id }}</div>
+                        <div>Title: {{ this.title }}</div>
+                        <div>Description: {{ this.body }}</div>
+                    </article>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col l6">
+                <div>
+                    <form>
+                        <input class="input" id="id" type="text" name="id" placeholder="copy and paste workout ID" />
+                        <input class="input" id="title" type="text" name="title" placeholder="Title" />
+                        <textarea id="body" type="text" name="body" placeholder="Workout Information"></textarea>
+                    </form>
+                    <button id="update" class="waves-effect waves-light purple darken-4 btn-large">
+                        Update
+                    </button>
+                </div>
+            </div>
         </div>
+
     </div>
