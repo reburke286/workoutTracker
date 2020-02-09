@@ -78,25 +78,26 @@ app.post("/add", ({ body }, res) => {
 });
 
 app.post("/update/:id", (req, res) => {
-  db.Workout.update(
+  console.log(req.params.id);
+  db.Workout.findOneAndUpdate(
     {
-      _id: mongojs.ObjectId(req.params.id)
+      _id: req.params.id
     },
     {
       $set: {
         title: req.body.title,
-        body: req.body.body,
-        updatedAt: Date.now()
+        body: req.body.body
+        // userUpdated: Date.now
       }
     },
-    (error, data) => {
-      if (error) {
-        res.send(error);
-      } else {
-        res.send(data);
-      }
+    { new: true }
+  ).then((error, data) => {
+    if (error) {
+      res.send(error);
+    } else {
+      res.send(data);
     }
-  );
+  });
 });
 
 // Start the server

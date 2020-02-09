@@ -77,7 +77,7 @@
                     <p>ID: {{ this.id }}</p>
                     <p>Title: {{ this.title }}</p>
                     <p>Description: {{ this.body }}</p>
-                    <button class="update-button waves-effect waves-light purple darken-4 btn-large">Update</button>
+                    {{!-- <button class="update-button waves-effect waves-light purple darken-4 btn-large">Update</button> --}}
 
                     {{/each}}
                 </div>
@@ -86,12 +86,12 @@
                 <div>
                     <form>
                         <input class="input" id="id" type="text" name="id" placeholder="copy and paste workout ID" />
-                        <input class="input" id="title" type="text" name="title" placeholder="Title" />
-                        <textarea id="body" type="text" name="body" placeholder="Workout Information"></textarea>
+                        <input class="input" id="title-update" type="text" name="title" placeholder="Title" />
+                        <textarea id="body-update" type="text" name="body" placeholder="Workout Information"></textarea>
                     </form>
-                    {{!-- <button id="update" class="waves-effect waves-light purple darken-4 btn-large">
+                    <button id="update" class="waves-effect waves-light purple darken-4 btn-large">
                         Update
-                    </button> --}}
+                    </button>
                 </div>
             </div>
         </div>

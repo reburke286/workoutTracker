@@ -33,3 +33,34 @@ $(document).ready(function() {
     });
   });
 });
+
+$(document).ready(function() {
+  $("#update").on("click", function(event) {
+    event.preventDefault();
+    const id = $("#id")
+      .val()
+      .trim();
+    const titleUpdateInput = $("#title-update")
+      .val()
+      .trim();
+    const bodyUpdateInput = $("#body-update")
+      .val()
+      .trim();
+
+    const updatedWorkout = {
+      title: titleUpdateInput,
+      body: bodyUpdateInput
+    };
+    console.log(updatedWorkout);
+
+    $("#id").val("");
+    $("#title-update").val("");
+    $("#body-update").val("");
+
+    // Send the POST request.
+    $.post("/update/" + id, updatedWorkout).then(() => {
+      // Reload the page to get the updated list
+      location.reload();
+    });
+  });
+});
