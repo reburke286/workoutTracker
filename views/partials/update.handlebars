@@ -32,7 +32,7 @@
     }
 
 
-    #title {
+    #title-update {
         display: block;
         height: 36px;
         width: 400px;
@@ -77,7 +77,8 @@
                     <p>ID: {{ this.id }}</p>
                     <p>Title: {{ this.title }}</p>
                     <p>Description: {{ this.body }}</p>
-                    {{!-- <button class="update-button waves-effect waves-light purple darken-4 btn-large">Update</button> --}}
+                    {{!-- <button data-id="{{this.id}}"
+                        class="delete-button waves-effect waves-light purple darken-4 btn-large">Delete</button> --}}
 
                     {{/each}}
                 </div>

@@ -64,3 +64,23 @@ $(document).ready(function() {
     });
   });
 });
+
+// $(document).ready(function() {
+//   $(".delete-button").on("click", function(event) {
+//     event.preventDefault();
+//     const id = $(this).data("id");
+//     console.log(id);
+
+//     $.ajax({
+//       method: "DELETE",
+//       url: "/delete/" + id
+//     }).then(res => {
+//       if (res.status !== 200) {
+//         console.log(
+//           "Looks like there was a problem. Status code: " + res.status
+//         );
+//         return;
+//       }
+//     });
+//   });
+// });

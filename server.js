@@ -35,7 +35,6 @@ app.get("/", function(req, res) {
 
 app.get("/update", function(req, res) {
   db.Workout.find({}).then(dbWorkout => {
-    console.log(dbWorkout[0]._id);
     const workoutArr = [];
     for (var i = 0; i < dbWorkout.length; i++) {
       const dbWorkoutObj = {
@@ -66,11 +65,9 @@ app.get("/api/workouts", (req, res) => {
 
 // post requests
 app.post("/add", ({ body }, res) => {
-  console.log(body);
   db.Workout.create(body)
     .then(dbWorkout => {
       res.json(dbWorkout);
-      console.log(dbWorkout);
     })
     .catch(err => {
       res.json(err);
@@ -78,7 +75,6 @@ app.post("/add", ({ body }, res) => {
 });
 
 app.post("/update/:id", (req, res) => {
-  console.log(req.params.id);
   db.Workout.findOneAndUpdate(
     {
       _id: req.params.id
@@ -99,6 +95,19 @@ app.post("/update/:id", (req, res) => {
     }
   });
 });
+
+// delete requests
+// app.delete("delete/:id", (req, res) => {
+//   console.log(req.params.id);
+//   db.Workout.findOneAndRemove({ _id: req.params.id }).then(docs => {
+//     if (docs) {
+//       resolve({ success: true, data: docs });
+//     } else {
+//       reject({ success: false, data: "no such user exist" });
+//     }
+//   });
+//   location.reload();
+// });
 
 // Start the server
 app.listen(PORT, () => {
