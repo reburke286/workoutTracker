@@ -9,7 +9,8 @@
         top: 0;
         width: 100%;
         height: auto;
-        opacity: 0.6;
+        opacity: 0.3;
+        z-index: -1;
     }
 
     .container form {
@@ -44,6 +45,15 @@
 </head>
 
 <body>
+    <nav id="nav-color">
+        <div class="nav-wrapper purple darken-4">
+            <a href="/" class="brand-logo  purple darken-4">Home</a>
+            <ul id="nav-mobile" class="right purple darken-4 hide-on-med-and-down">
+                <li><a href="/add">New Workout</a></li>
+                <li><a href="/update">Update</a></li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
         <img src="https://pickywallpapers.com/img/2018/3/boxing-gym-computer-background-897-916-hd-wallpapers.jpg" />
         <form action="/add" method="post">
