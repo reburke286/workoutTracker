@@ -11,7 +11,7 @@ The user should be able to:
 
 Deployed at: TBD
 
-Installation: No installation necessary.
+Installation: run npm install
 
 Usage: This application is able to be used by any individual who would like to track their exercise through a web application.
 
