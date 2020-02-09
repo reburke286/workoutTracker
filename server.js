@@ -24,9 +24,13 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Workoutdb", {
-  useNewUrlParser: true
-});
+mongoose.connect(
+  process.env.MONGODB_URI ||
+    "mongodb://heroku_kcd04wzv:6of2rur51qq07p83dbm46kf21d@ds033887.mlab.com:33887/heroku_kcd04wzv",
+  {
+    useNewUrlParser: true
+  }
+);
 
 // get requests
 app.get("/", function(req, res) {
