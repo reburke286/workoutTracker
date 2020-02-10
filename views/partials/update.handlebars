@@ -71,19 +71,6 @@
         </form>
         <div class="row">
             <div class="col l6">
-                <div class="workout">
-                    {{#each workouts }}
-
-                    <p>ID: {{ this.id }}</p>
-                    <p>Title: {{ this.title }}</p>
-                    <p>Description: {{ this.body }}</p>
-                    {{!-- <button data-id="{{this.id}}"
-                        class="delete-button waves-effect waves-light purple darken-4 btn-large">Delete</button> --}}
-
-                    {{/each}}
-                </div>
-            </div>
-            <div class="col l6">
                 <div>
                     <form>
                         <input class="input" id="id" type="text" name="id" placeholder="copy and paste workout ID" />
@@ -93,6 +80,21 @@
                     <button id="update" class="waves-effect waves-light purple darken-4 btn-large">
                         Update
                     </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l10">
+                <div class="workout">
+                    {{#each workouts }}
+
+                    <p>ID: {{ this.id }}</p>
+                    <p>Title: {{ this.title }}</p>
+                    <p>Description: {{ this.body }}</p>
+                    <button data-id="{{this.id}}"
+                        class="delete-button waves-effect waves-light purple darken-4 btn-large">Delete</button>
+
+                    {{/each}}
                 </div>
             </div>
         </div>
