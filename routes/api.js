@@ -70,27 +70,10 @@ router.post("/update/:id", (req, res) => {
 });
 
 // delete requests
-router.delete("delete/:id", (req, res) => {
+router.delete("/delete/:id", (req, res) => {
   Workout.findByIdAndDelete(req.params.id).then(err => {
     if (err) console.log(err);
-    console.log("Deleted successfully");
   });
-  location.reload();
 });
-
-// app.delete("/delete/:id", (req, res) => {
-//     db.notes.remove(
-//       {
-//         _id: mongojs.ObjectID(req.params.id)
-//       },
-//       (error, data) => {
-//         if (error) {
-//           res.send(error);
-//         } else {
-//           res.send(data);
-//         }
-//       }
-//     );
-//   });
 
 module.exports = router;

@@ -21,14 +21,13 @@ $(document).ready(function() {
       title: titleInput,
       body: bodyInput
     };
-    console.log(newWorkout);
 
     $("#title").val("");
     $("#body").val("");
 
     // Send the POST request.
     $.post("/add", newWorkout).then(() => {
-      // Reload the page to get the updated list
+      // Reload the page
       location.reload();
     });
   });
@@ -51,7 +50,6 @@ $(document).ready(function() {
       title: titleUpdateInput,
       body: bodyUpdateInput
     };
-    console.log(updatedWorkout);
 
     $("#id").val("");
     $("#title-update").val("");
@@ -69,12 +67,12 @@ $(document).ready(function() {
   $(".delete-button").on("click", function(event) {
     event.preventDefault();
     const id = $(this).data("id");
-    console.log(typeof id);
 
     $.ajax({
       type: "DELETE",
       url: "/delete/" + id
-    }).then(res => {
+    });
+    location.reload().then(res => {
       if (res.status !== 200) {
         console.log(
           "Looks like there was a problem. Status code: " + res.status
