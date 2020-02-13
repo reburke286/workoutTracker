@@ -1,0 +1,80 @@
+body {
+  background: url("https://pickywallpapers.com/img/2018/3/boxing-gym-computer-background-897-916-hd-wallpapers.jpg")
+      no-repeat left top,
+    linear-gradient(#2b2b2b, #4b4a4a);
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+}
+.container img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.6;
+}
+
+input {
+  display: block;
+  height: 36px;
+  width: 200px;
+  font-size: 24px;
+}
+
+textarea {
+  width: 200px;
+  height: 200px;
+}
+
+.waves-effect {
+  margin: 30px;
+}
+
+/* Update Styles */
+.container form {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+::-webkit-input-placeholder {
+  color: white;
+}
+
+#id {
+  display: block;
+  height: 36px;
+  width: 400px;
+  font-size: 24px;
+  color: white;
+}
+
+#title-update {
+  display: block;
+  height: 36px;
+  width: 400px;
+  font-size: 24px;
+  color: white;
+}
+
+textarea {
+  width: 400px;
+  height: 200px;
+  font-size: 24px;
+  color: white;
+}
+
+p {
+  line-height: 10px;
+  z-index: 2;
+}
+
+/* Add Styles */
+#title {
+  display: block;
+  height: 36px;
+  width: 400px;
+  font-size: 24px;
+  color: white;
+}
